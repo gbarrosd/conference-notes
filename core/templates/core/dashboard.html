@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block corpo %}
+
+<div>
+    <a href="novaNota/" type="button" class="btn btn-light">
+        <i class="fa fa-plus"></i> Cadastrar nova notinha
+    </a>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Veiculo/Placa</th>
+                <th scope="col">Criada em</th>
+                <th scope="col">Situação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nota in notas %}
+            <tr>
+                <td>{{nota.titulo}}</td>
+                <td>{{nota.created_at}}</td>
+                <td>{{nota.done}}</td>
+                <td>
+                    <a href="/notaDetalhe/{{nota.id}}">
+                        <i class="fa fa-asterisk"></i>
+                        Detalhes
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

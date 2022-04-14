@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<label class="dipslay-6">Editar Nota</label>
+<p></p>
+<form action="{% url 'note.update' idNote %}" method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    
+    <input type="submit" class="btn btn-success mt-4 ms-1" value="Salvar">
+</form>
+
+{% endblock %}

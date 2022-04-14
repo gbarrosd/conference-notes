@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<label class="dipslay-6">Editar Item</label>
+<p></p>
+<form action="{% url 'item.update' idItem %}" method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    
+    <input type="hidden" name="idNote" value="{{idNote}}">
+    <input type="submit" class="btn btn-success mt-4 ms-1" value="Salvar">
+</form>
+
+{% endblock %}

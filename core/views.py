@@ -67,6 +67,13 @@ def updateNote(request, id):
         return render(request, 'core/updateNote.html', context)
 
 @login_required
+def deleteNote(request, id):
+    note = get_object_or_404(Notes, pk=id)
+    note.delete()
+
+    return redirect('dashboard')
+
+@login_required
 def storeItem(request, id):
     if request.method == 'POST':
         data = request.POST.copy()
@@ -112,6 +119,15 @@ def updateItem(request, id):
         return render(request, 'core/updateItem.html', context)
 
 @login_required
+def deleteItem(request, id):
+    item = get_object_or_404(Items, pk=id)
+    noteId = item.note.id
+    oldValueItem = item.value
+    item.delete()
+    Notes.objects.filter(pk=noteId).update(total_value=F('total_value')-oldValueItem)
+    return HttpResponseRedirect(reverse('note.detail', args=[noteId]))
+
+@login_required
 def storeObservation(request, id):
     if request.method == 'POST':
         data = request.POST.copy()
@@ -130,5 +146,11 @@ def storeObservation(request, id):
 
         return render(request, 'core/storeObservation.html', context)
 
+@login_required
+def deleteObservation(request, id):
+    obs = get_object_or_404(Observation, pk=id)
+    noteId = obs.note.id
+    obs.delete()
 
+    return HttpResponseRedirect(reverse('note.detail', args=[noteId]))
 

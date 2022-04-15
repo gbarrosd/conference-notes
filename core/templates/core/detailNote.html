@@ -22,7 +22,7 @@
                         <a href="{% url 'item.update' item.id %}" type="button" class="btn btn-light">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <a href="#" type="button" class="btn btn-light">
+                        <a href="{% url 'item.delete' item.id %}" type="button" class="btn btn-light">
                             <i class="fa fa-trash"></i>
                         </a>
                     </div>
@@ -37,12 +37,12 @@
     <a href="{% url 'note.update' note.id %}" type="button" class="btn btn-light">
         <i class="fa fa-edit"></i> Editar Nota
     </a>
-    <a href="#" type="button" class="btn btn-light">
+    <a href="{% url 'note.delete' note.id %}" type="button" class="btn btn-light">
         <i class="fa fa-trash"></i> Excluir nota
     </a>
     <div class="list-group container mt-4">
         <li class="list-group-item list-group-item-action list-group-item-light">
-            <strong>Situação: </strong>
+            <strong>Situação: </strong> {{note.situation}}
         </li>
         <li class="list-group-item list-group-item-action list-group-item-light">
             <strong>Valor Total da nota: </strong>{{note.total_value}}
@@ -53,7 +53,11 @@
                     <i class="fa fa-plus"></i> Adicionar observação
                 </a>
                 {% for obs in observations %}
-                <li>{{obs.observation}}</li>
+                <li>{{obs.observation}} 
+                    <a href="{% url 'observation.delete' obs.id %}" type="button" class="btn btn-light">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </li>
                 {% endfor %}
             </ul>
 

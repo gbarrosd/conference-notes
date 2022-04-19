@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div>
+    <a href="{% url 'add.user' %}" type="button" class="btn btn-light">
+        <i class="fa fa-plus"></i> Cadastrar novo usuário
+    </a>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col"><strong>#</strong></th>
+                <th scope="col">Primeiro nome</th>
+                <th>Cargo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.first_name}}</td>
+                {% if user.is_superuser == 1 %}
+                <td>Admin</td>
+                {% else %}
+                <td>Usuário</td>
+                {% endif %}
+                <td>
+                    <a href="{% url 'detail.user' user.id %}">
+                        <i class="fa fa-asterisk"></i>
+                        Detalhes
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

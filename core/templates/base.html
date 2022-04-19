@@ -44,23 +44,24 @@
             <ul class="list-unstyled components">
                 <p>Menu navegação</p>
                 <li class="active">
-                    <a href="#" data-toggle="collapse" aria-expanded="false">Home</a>
+                    <a href="{% url 'dashboard' %}" data-toggle="collapse" aria-expanded="false">Home</a>
                 </li>
+                {% if user.is_superuser %}
                 <li>
-                    <a href="#">About</a>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Usuários</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="#">Page 1</a>
+                            <a href="{% url 'list.users' %}">Todos os usuários</a>
                         </li>
                         <li>
-                            <a href="#">Page 2</a>
+                            <a href="{% url 'add.user' %}">Cadastrar Usuário</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="#">Page 3</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
+                {% endif %}
                 <li>
                     <a href="#">Portfolio</a>
                 </li>

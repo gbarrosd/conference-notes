@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div>
+
+    <h1 class="ml-2">{{usr.first_name}}</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">CNPJ</th>
+                <th scope="col">Cargo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {{usr.id}}
+                </td>
+                <td>{{usr.get_full_name}}</td>
+                <td>{{usr.cnpj}}</td>
+                {% if usr.is_superuser == 1 %}
+                <td>Admin</td>
+                {% else %}
+                <td>Usuário</td>
+                {% endif %}
+                <td>
+                    <div class="text-center">
+                        <a href="{% url 'update.user' usr.id %}" type="button" class="btn btn-light">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="{% url 'user.delete' usr.id %}" type="button" class="btn btn-light">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="#" type="button" class="btn btn-light">
+        <i class="fa fa-edit"></i> Mudar Senha
+    </a>
+{% endblock %}

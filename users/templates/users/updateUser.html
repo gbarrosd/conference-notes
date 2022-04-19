@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+<label class="dipslay-6">Editar usuário</label>
+<p></p>
+<form action="{% url 'update.user' user.id %}" method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <input type="submit" class="btn btn-success mt-4 ms-1" value="Salvar">
+</form>
+
+{% endblock %}

@@ -1,3 +1,1 @@
-web: gunicorn --pythonpath notes notes.wsgi --log-file - --log-level debug
-python manage.py collectstatic --noinput
-manage.py migrate
+web: gunicorn notes.wsgi --log-file -
